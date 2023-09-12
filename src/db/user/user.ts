@@ -1,14 +1,14 @@
 import { Model, DataTypes } from 'sequelize';
 import BaseEntity from '../BaseEntity'
-import sequelize  from '../db-context'; // Import your Sequelize instance
-import { Mode } from 'fs';
+import { Sequelize } from 'sequelize-typescript';
 
-class User extends BaseEntity<string> {
+export class User extends BaseEntity<string> {
   firstName: string;
   lastName: string;
   email: string;
 }
 
+export const initUserTable = (sequelize: Sequelize) => {
 User.init(
   {
     ...User.getBaseModelAttributes(),
@@ -32,6 +32,7 @@ User.init(
   },
   {
     sequelize, 
-    modelName: 'User',
+    modelName: 'Users',
   }
 );
+}

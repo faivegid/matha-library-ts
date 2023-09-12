@@ -1,9 +1,9 @@
-import sequelize from "../db-context";
 import BaseEntity from "../BaseEntity";
 import { DataTypes } from "sequelize";
 import { BookStatus } from "../../models/enums/BookStatus";
+import { Sequelize } from "sequelize-typescript";
 
-class Book extends BaseEntity<string> {
+export class Book extends BaseEntity<string> {
   bookName: string;
   authorName: string;
   description: string;
@@ -11,6 +11,7 @@ class Book extends BaseEntity<string> {
   frontPagePicUrl: string;
 }
 
+export const initBookTable = (sequelize: Sequelize) => {
 Book.init(
     {
       ...Book.getBaseModelAttributes(),
@@ -43,6 +44,7 @@ Book.init(
     },
     {
       sequelize, 
-      modelName: 'Book',
+      modelName: 'Books',
     }
   );
+}

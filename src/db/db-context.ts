@@ -1,15 +1,14 @@
-import { Sequelize } from 'sequelize-typescript';
-import path from 'path';
+import { Sequelize } from "sequelize-typescript";
+import {initUserTable} from "./user/user";
+import {initBookTable} from "./book/book";
 
-const sequelize = new Sequelize({
-  database: 'marthaLibraryDb',
-  username: '',
-  password: '',
-  host: 'localhost',
-  dialect: 'mysql'
+const sequelize = new Sequelize("testDb", "sa", "Anything11.", {
+  host: "localhost",
+  port: 55467,
+  dialect: 'mssql'
 });
 
-const userModelPath = path.join(__dirname, 'src', 'db', 'user');
-const bookModelPath = path.join(__dirname, 'src', 'models', 'book');
+initUserTable(sequelize);
+initBookTable(sequelize);
 
 export default sequelize;

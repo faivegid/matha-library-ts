@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import cors from 'cors';
 import router from './router/router';
+import sequelize from './db/db-context';
 
 const app = express();
 
@@ -16,6 +17,10 @@ app.use(compression());
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use("/", router());
+
+sequelize.sync({ force: false }).then(() => {
+  console.log('Database tables synchronized.');
+});
 
 const server = http.createServer(app);
 
