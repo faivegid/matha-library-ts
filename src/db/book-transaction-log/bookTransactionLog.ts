@@ -22,7 +22,7 @@ BookTransactionLog.init(
         primaryKey: true,
     },
     transactionType: {
-        type: DataTypes.ENUM(...Object.keys(TransactionType)),,
+        type: DataTypes.ENUM(...Object.keys(TransactionType)),
         allowNull: false,
     },
     userEmail: {

@@ -6,6 +6,7 @@ export class User extends BaseEntity<string> {
   firstName: string;
   lastName: string;
   email: string;
+  password: string;
 }
 
 export const initUserTable = (sequelize: Sequelize) => {
@@ -26,6 +27,10 @@ User.init(
       allowNull:false
     },
     email:{
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    password:{
       type: DataTypes.STRING,
       allowNull: false
     }
