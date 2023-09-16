@@ -1,5 +1,6 @@
 import { BookStatus } from "../../models/enums/BookStatus";
-import { Book } from "./book"; // Import your model definition here
+import { Book } from "./book";
+import { Op } from "sequelize";
 
 export class BookRepository {
 	async createBook(
@@ -32,30 +33,14 @@ export class BookRepository {
 		frontPagePicUrl: string
 	): Promise<number> {
 		const [updatedRows] = await Book.update(
-			{
-				bookName,
-				authorName,
-				description,
-				frontPagePicUrl,
-			},
-			{
-				where: { id },
-			}
+			{ bookName, authorName, description, frontPagePicUrl },
+			{ where: { id } }
 		);
-
 		return updatedRows;
 	}
 
 	async updateBookStatusById(id: string, status: BookStatus): Promise<number> {
-		const [updatedRows] = await Book.update(
-			{
-				status,
-			},
-			{
-				where: { id },
-			}
-		);
-
+		const [updatedRows] = await Book.update({ status }, { where: { id } });
 		return updatedRows;
 	}
 
@@ -64,5 +49,19 @@ export class BookRepository {
 			{ isDeleted: false, deleetedBy: "admin" },
 			{ where: { id } }
 		);
+	}
+
+	async searchBook(search: string): Promise<Book[]> {
+		const options = {
+			where: {
+				[Op.or]: [
+					{ bookName: { [Op.iLike]: `%${search}%` } },
+					{ authorName: { [Op.iLike]: `%${search}%` } },
+				],
+				isDeleted: false,
+			},
+		};
+
+		return Book.findAll(options);
 	}
 }

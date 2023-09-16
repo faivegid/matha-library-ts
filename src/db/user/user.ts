@@ -1,4 +1,4 @@
-import { Model, DataTypes } from 'sequelize';
+import { DataTypes } from 'sequelize';
 import BaseEntity from '../BaseEntity'
 import { Sequelize } from 'sequelize-typescript';
 

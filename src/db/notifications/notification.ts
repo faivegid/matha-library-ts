@@ -32,7 +32,7 @@ export const initNotificationTable = (sequelize: Sequelize) => {
 		},
 		{
 			sequelize,
-			modelName: "Notification",
+			modelName: "Notifications",
 		}
 	);
 };
