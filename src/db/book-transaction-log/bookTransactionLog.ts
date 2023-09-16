@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize";
 import BaseEntity from "../BaseEntity";
-import {  Sequelize } from "sequelize-typescript";
+import { Sequelize } from "sequelize-typescript";
 import { TransactionType } from "../../models/enums/TransactionType";
 
 export class BookTransactionLog extends BaseEntity<number> {
@@ -22,7 +22,7 @@ BookTransactionLog.init(
         primaryKey: true,
     },
     transactionType: {
-        type: DataTypes.ENUM(...Object.keys(TransactionType)),,
+        type: DataTypes.ENUM(...Object.keys(TransactionType)),
         allowNull: false,
     },
     userEmail: {

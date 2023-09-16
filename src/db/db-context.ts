@@ -4,7 +4,7 @@ import {initBookTable} from "./book/book";
 
 const sequelize = new Sequelize("testDb", "sa", "Anything11.", {
   host: "localhost",
-  port: 55467,
+  port: 50754,
   dialect: 'mssql'
 });
 
